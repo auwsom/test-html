@@ -1,0 +1,77 @@
+tryhtml_intro.html
+DETAILS
+ACTIVITY
+tryhtml_intro.html
+Sharing Info
+
+General Info
+Type
+HTML
+Size
+1 KB (1,189 bytes)
+Storage used
+1 KB (1,189 bytes)
+Location
+test-html
+Owner
+me
+Modified
+10:40 AM by me
+Opened
+10:40 AM by me
+Created
+10:30 AM with Tryit Editor
+Description
+Add a description
+Download permissions
+Viewers can download
+All selections cleared All selections cleared All selections cleared 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Fusion Tables queries</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 47.6, lng: -122.3},
+          zoom: 9
+        });
+
+        var layer = new google.maps.FusionTablesLayer({
+          query: {
+            select: 'address',
+            from: '1i_Cfd1zwIn-vpz_Lqm-di7t36gDptrsSrdJpKpaE',
+            where: 'ridership > 5000'
+          }
+        });
+        layer.setMap(map);
+      }
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-TwQBhSgRdAwEcgTkMVIAhpcdjVlAflM&callback=initMap">
+    </script>
+  </body>
+</html>
+tryhtml_intro.html
+Open with
+Organize in Drive
+Sharing settings
