@@ -21,7 +21,7 @@
     </head>
     <body>
     <form>
- Zoom level (1-18): 
+ Zoom level (1-22): 
  <input type='text' name='zoom' /><br />
  <input type='button' value='Submit' onclick='submitForm(this.form); return false;' />
 </form>
@@ -35,6 +35,7 @@
         
 lat1 = 47.6;
 long1 = -122.3;
+reload(); // first load map
         function initialize() {
         var address = (document.getElementById('my-address'));
         var autocomplete = new google.maps.places.Autocomplete(address);
@@ -61,8 +62,8 @@ function codeAddress() {
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
       	lat1 = results[0].geometry.location.lat()
- alert(lat1);
-      	long1 = results[0].geometry.location.long1()
+ //alert(lat1);
+      	long1 = results[0].geometry.location.long()
 
       //alert("Latitude: "+results[0].geometry.location.lat());
       //alert("Longitude: "+results[0].geometry.location.lng());
@@ -91,7 +92,7 @@ function submitForm(someForm) {
 
     function reload(){
     		codeAddress()
- 			alert('1:'+lat1);
+ 			//alert('1:'+lat1);
     		initMap()
     		document.getElementById("map").contentWindow.location.reload(true);
         }
@@ -113,7 +114,6 @@ function submitForm(someForm) {
       }
     </script>
     <div id="map"></div>
-
 
   </body>
 </html>
