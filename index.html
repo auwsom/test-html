@@ -35,7 +35,11 @@
         
 lat1 = 47.6;
 long1 = -122.3;
+zoom1 = 10;
+//window.out1 = 3;
+          
 reload(); // first load map
+          
         function initialize() {
         var address = (document.getElementById('my-address'));
         var autocomplete = new google.maps.places.Autocomplete(address);
@@ -76,10 +80,6 @@ function codeAddress() {
   }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-zoom1 = 10;
-//window.out1 = 3;
-
 function submitForm(someForm) {
     for (var i=0, el; el = someForm.elements[i]; i++) {
         if (el.name) {
@@ -114,6 +114,9 @@ function submitForm(someForm) {
       }
     </script>
     <div id="map"></div>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-TwQBhSgRdAwEcgTkMVIAhpcdjVlAflM&callback=initMap">
+    </script>
 
   </body>
 </html>
