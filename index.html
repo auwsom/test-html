@@ -61,6 +61,7 @@ function codeAddress() {
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
       	lat1 = results[0].geometry.location.lat()
+ alert(lat1);
       	long1 = results[0].geometry.location.long1()
 
       //alert("Latitude: "+results[0].geometry.location.lat());
@@ -84,13 +85,13 @@ function submitForm(someForm) {
             zoom1 = parseInt(el.value);
         }
     }
- //alert(zoom1);
- reload();
+ 	//alert(zoom1);
+ 	reload();
 }
 
     function reload(){
     		codeAddress()
- alert(lat1);
+ 			alert('1:'+lat1);
     		initMap()
     		document.getElementById("map").contentWindow.location.reload(true);
         }
