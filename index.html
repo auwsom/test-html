@@ -17,23 +17,71 @@
         padding: 0;
       }
     </style>
-    <script src="searchLocation.js"></script>
-  </head>
-  <body>
-  
+    
+    </head>
+    <body>
+    <form>
+ Zoom level (1-18): 
+ <input type='text' name='zoom' /><br />
+ <input type='button' value='Submit' onclick='submitForm(this.form); return false;' />
+</form>
         <input type="text" id="my-address">
-        <button id="getCords" onClick="codeAddress();">Search near location:</button>
-<script>
+        <button id="getCords" onClick="reload();">getLat&Long</button>
+        
+     
 
-long1 = -122.3;
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+        <script type="text/javascript">
+        
 lat1 = 47.6;
+long1 = -122.3;
+        function initialize() {
+        var address = (document.getElementById('my-address'));
+        var autocomplete = new google.maps.places.Autocomplete(address);
+        autocomplete.setTypes(['geocode']);
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+        }
+      });
+}
+function codeAddress() {
+    geocoder = new google.maps.Geocoder();
+    var address = document.getElementById("my-address").value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+      	lat1 = results[0].geometry.location.lat()
+      	long1 = results[0].geometry.location.long1()
+
+      //alert("Latitude: "+results[0].geometry.location.lat());
+      //alert("Longitude: "+results[0].geometry.location.lng());
+      } 
+
+      else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
 zoom1 = 10;
 //window.out1 = 3;
 
 function submitForm(someForm) {
     for (var i=0, el; el = someForm.elements[i]; i++) {
         if (el.name) {
-            lat1 = parseInt(el.value);
+            zoom1 = parseInt(el.value);
         }
     }
  //alert(zoom1);
@@ -41,6 +89,8 @@ function submitForm(someForm) {
 }
 
     function reload(){
+    		codeAddress()
+ alert(lat1);
     		initMap()
     		document.getElementById("map").contentWindow.location.reload(true);
         }
@@ -62,17 +112,8 @@ function submitForm(someForm) {
       }
     </script>
     <div id="map"></div>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-TwQBhSgRdAwEcgTkMVIAhpcdjVlAflM&callback=initMap">
-    </script>
+
+
   </body>
 </html>
 
-
-/*
-/*<form>
- Location: 
- <input type='text' name='location' /><br />
- <input type='button' value='Submit' onclick='submitForm(this.form); return false;' />
-</form>*/
-*/   
