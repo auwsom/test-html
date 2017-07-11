@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
+
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
         <script type="text/javascript">
         function initialize() {
@@ -41,9 +39,3 @@ function codeAddress() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
         </script>
-    </head>
-    <body>
-        <input type="text" id="my-address">
-        <button id="getCords" onClick="codeAddress();">getLat&Long</button>
-    </body>
-</html>
